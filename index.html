@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<!-- Google Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7392187562215194"
+     crossorigin="anonymous"></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0X7398K36L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0X7398K36L');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Semester Grade Calculator - ISSIG Gabès</title>
+    <meta name="description" content="Calculez vos moyennes semestrielles avec le Semester Grade Calculator pour ISSIG - Institut Supérieur de Sciences Infirmières Gabès. Facile, rapide et précis.">
+    <meta name="keywords" content="ISSIG, Institut Supérieur de Sciences Infirmières Gabès, semestre, calcul moyenne ISSIG, notes ISSIG, infirmier Gabès, université, examen, notes, crédits universitaires">
+    <meta name="author" content="MO20">
+    
+    <!-- Open Graph (Social Media) -->
+    <meta property="og:title" content="Semester Grade Calculator - ISSIG Gabès">
+    <meta property="og:description" content="Le meilleur outil pour calculer vos moyennes semestrielles à ISSIG - Gabès.">
+    <meta property="og:url" content="https://issig.netlify.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://issig.netlify.app/issig.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Semester Grade Calculator - ISSIG Gabès">
+    <meta name="twitter:description" content="Un outil rapide et précis pour calculer vos moyennes semestrielles à ISSIG.">
+    <meta name="twitter:image" content="https://issig.netlify.app/issig.png">
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "ISSIG - Institut Supérieur de Sciences Infirmières Gabès",
+      "url": "https://issig.netlify.app/",
+      "logo": "https://issig.netlify.app/issig.png",
+      "description": "Le calculateur de moyennes semestrielles officiel pour les étudiants de ISSIG - Gabès.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gabès",
+        "addressCountry": "TN"
+      }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="issig.png" alt="University Logo" class="logo">
+        <h1>📚 Semester Grade Calculator</h1>
+
+        <div class="semester-select">
+            <select id="semesterSelect">
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+            </select>
+        </div>
+
+        <div id="subjectsContainer"></div>
+        <div style="text-align: center;">
+            <button onclick="calculateAverage()">Calculate Semester Average</button>
+        </div>
+        <div id="result"></div>
+        <div id="creditsResult"></div>
+    </div>
+
+    <!-- About ISSIG Section -->
+    <section class="about">
+        <h2>À propos de ISSIG - Gabès</h2>
+        <p>L'Institut Supérieur de Sciences Infirmières Gabès (ISSIG) est une institution spécialisée dans la formation en sciences infirmières en Tunisie.</p>
+        <p>Grâce à notre calculateur, les étudiants peuvent facilement estimer leur moyenne semestrielle en fonction des notes obtenues.</p>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media">
+        <h2>Suivez-nous sur Facebook</h2>
+        <a href="https://www.facebook.com/yourpage" target="_blank">
+            <img src="facebook-icon.png" alt="Facebook" width="40">
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Développé par MO20</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
