@@ -75,19 +75,19 @@ input {
     font-size: 16px;
 }
 
-/* Add/Update this in style.css */
+/* Replace the .subject-average styles in your style.css */
 .subject-average {
-    margin: 15px 0 5px;
-    color: #065f46; /* Your signature dark green */
+    margin: 12px 0 8px;
+    color: #065f46; /* Your main green color */
     font-family: 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 16px;
     text-align: center;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 2px rgba(6, 95, 70, 0.1);
-    padding: 8px 12px;
-    border-radius: 4px;
-    display: inline-block;
+    display: block;
+    background: none !important; /* Force remove any background */
+    border: none !important; /* Remove borders */
+    box-shadow: none !important; /* Remove shadows */
+    padding: 0;
 }
 
 /* Buttons */
