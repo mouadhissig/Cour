@@ -212,6 +212,27 @@ function createSubjectInputs() {
         addInputEventListeners(subject, index); // Add event listeners for this subject
     });
 }
+        // Control checks
+        const threshold = subject.controlThreshold || 6; // Default threshold is 6
+        if (!subject.noControl && !noControlSubjects.has(subject.name) && rawAverage < threshold) {
+            warnings.push(`Contrôle requis dans ${subject.name} (Note: ${rawAverage.toFixed(2)})`);
+        }
+
+        total += rawAverage * subject.coeff;
+        totalCoeff += subject.coeff;
+    });
+
+    // Display results
+    const finalAverage = total / totalCoeff;
+    let resultHTML = `Moyenne Semestrielle: ${finalAverage.toFixed(2)}/20`;
+    if (warnings.length > 0) {
+        resultHTML += `<br><br><span class="warning">ATTENTION:</span><br>${warnings.join('<br>')}`;
+    }
+
+    document.getElementById('result').innerHTML = resultHTML;
+    document.getElementById('creditsResult').innerHTML = 
+        `Crédits Totaux: ${totalCredits}<br>Crédits Validés: ${earnedCredits}`;
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', createSubjectInputs);
