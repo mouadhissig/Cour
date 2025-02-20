@@ -75,17 +75,17 @@ input {
     font-size: 16px;
 }
 
-/* Subject Average Display */
+/* Subject Average Display - Bold */
 .subject-average {
     margin-top: 10px;
-    font-weight: 600;
-    color: #065f46;
+    font-weight: 700;
+    color: #065f46; /* Match your theme color */
     padding: 8px;
-    background: rgba(52, 211, 153, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* White background */
     border-radius: 6px;
-    border: 1px solid #34d399;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Buttons */
