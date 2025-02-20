@@ -102,7 +102,6 @@ function createSubjectInputs() {
                         <input type="number" placeholder="Exam ${i+1}" id="anat_exam${index}_${i}">
                     </div>
                 `).join('')}
-                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.isDermatologie) {
             card.innerHTML = `
@@ -113,7 +112,6 @@ function createSubjectInputs() {
                     <input type="number" placeholder="Exam ORL" id="derm_exam2${index}">
                     <input type="number" placeholder="Exam Ophtalmo" id="derm_exam3${index}">
                 </div>
-                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.isSpecialCase) {
             card.innerHTML = `
@@ -123,7 +121,6 @@ function createSubjectInputs() {
                     <input type="number" placeholder="Exam 1" id="special_exam1${index}">
                     <input type="number" placeholder="Exam 2" id="special_exam2${index}">
                 </div>
-                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.singleNote) {
             card.innerHTML = `
@@ -131,7 +128,6 @@ function createSubjectInputs() {
                 <div class="input-group">
                     <input type="number" placeholder="Note" id="note_${index}">
                 </div>
-                <div class="subject-average" id="average_${index}"></div>
             `;
         } else {
             card.innerHTML = `
@@ -140,13 +136,12 @@ function createSubjectInputs() {
                     <input type="number" placeholder="DS Note" id="ds_${index}">
                     <input type="number" placeholder="Exam Note" id="exam_${index}">
                 </div>
-                <div class="subject-average" id="average_${index}"></div>
             `;
         }
         container.appendChild(card);
     });
 }
-                </div
+
 // Calculation function
 function calculateAverage() {
     const semester = document.getElementById('semesterSelect').value;
