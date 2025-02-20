@@ -75,17 +75,22 @@ input {
     font-size: 16px;
 }
 
-/* Subject Average Display - Bold */
+/* Add this to your style.css file */
 .subject-average {
-    margin-top: 10px;
-    font-weight: 700;
-    color: #065f46; /* Match your theme color */
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.9); /* White background */
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    text-align: center;
-    font-size: 14px;
+    margin: 12px auto 0;
+    padding: 10px;
+    width: fit-content;
+    min-width: 180px;
+    background: rgba(52, 211, 153, 0.15); /* Modern transparent green */
+    border: 2px solid rgba(52, 211, 153, 0.3); /* Subtle green border */
+    border-radius: 8px;
+    color: #065f46; /* Your existing dark green color */
+    font-weight: 600;
+    font-size: 15px;
+    backdrop-filter: blur(4px); /* Modern glass effect */
+    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.1); /* Soft green glow */
+    transition: all 0.3s ease;
+}
 }
 
 /* Buttons */
