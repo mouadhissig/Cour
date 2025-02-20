@@ -6,7 +6,7 @@ const subjectsBySemester = {
         { name: "Démarche de soins", coeff: 1.5, credits: 3 },
         { name: "Microbiologie, parasitologie et immunité", coeff: 1, credits: 2 },
         { name: "Introduction à la Discipline infirmière", coeff: 1.5, credits: 3 },
-        { name: "Psychologie du développement social", coeff: 1, credits: 2 }, // 2 notes
+        { name: "Psychologie du développement social", coeff: 1, credits: 2 },
         { name: "Techniques infirmières 1", coeff: 1.5, credits: 3, singleNote: true, controlThreshold: 8 },
         { name: "Anglais médicale (1)", coeff: 1, credits: 2, noControl: true },
         { name: "Droit de patient", coeff: 1, credits: 2, noControl: true },
@@ -31,12 +31,12 @@ const subjectsBySemester = {
     ],
     3: [
         { name: "Stage hospitalier en pédiatrie", coeff: 1.5, credits: 3, singleNote: true, controlThreshold: 10 },
-        { name: "Soins infirmiers en pédiatrie", coeff: 1.5, credits: 3, isSpecialCase: true }, // Special case: 1 DS + 2 exams
-        { name: "Soins infirmiers en cardiologie", coeff: 1, credits: 2, isSpecialCase: true, controlThreshold: 10 }, // Special case: 1 DS + 2 exams
-        { name: "Soins infirmiers en pneumologie", coeff: 1, credits: 2, isSpecialCase: true }, // Special case: 1 DS + 2 exams
+        { name: "Soins infirmiers en pédiatrie", coeff: 1.5, credits: 3, isSpecialCase: true },
+        { name: "Soins infirmiers en cardiologie", coeff: 1, credits: 2, isSpecialCase: true, controlThreshold: 10 },
+        { name: "Soins infirmiers en pneumologie", coeff: 1, credits: 2, isSpecialCase: true },
         { name: "Pharmacologie (2)", coeff: 1, credits: 2 },
         { name: "Soins infirmiers en neurologie", coeff: 1, credits: 2 },
-        { name: "Soins infirmiers en infectieux", coeff: 1, credits: 2, isSpecialCase: true }, // Special case: 1 DS + 2 exams
+        { name: "Soins infirmiers en infectieux", coeff: 1, credits: 2, isSpecialCase: true },
         { name: "Soins infirmiers et handicap", coeff: 0.5, credits: 1, noControl: true },
         { name: "Santé et sécurité au travail", coeff: 1, credits: 2, noControl: true },
         { name: "Soins infirmiers et santé de l'adolescent", coeff: 0.5, credits: 1, noControl: true },
@@ -50,11 +50,11 @@ const subjectsBySemester = {
         { name: "Stage hospitalier en médecine-chirurgie", coeff: 2, credits: 4, singleNote: true, controlThreshold: 10 },
         { name: "Système de santé", coeff: 1, credits: 2, noControl: true },
         { name: "Économie de la santé", coeff: 1, credits: 2, noControl: true },
-        { name: "Soins infirmiers en endocrinologie et diététique nutrition", coeff: 1.5, credits: 3, isSpecialCase: true }, // Special case: 1 DS + 2 exams
-        { name: "Soins infirmiers en pathologie digestive", coeff: 1, credits: 2, isSpecialCase: true }, // Special case: 1 DS + 2 exams
-        { name: "Soins infirmiers en situations critiques", coeff: 1.5, credits: 3, isSpecialCase: true, controlThreshold: 10 }, // Special case: 1 DS + 2 exams
+        { name: "Soins infirmiers en endocrinologie et diététique nutrition", coeff: 1.5, credits: 3, isSpecialCase: true },
+        { name: "Soins infirmiers en pathologie digestive", coeff: 1, credits: 2, isSpecialCase: true },
+        { name: "Soins infirmiers en situations critiques", coeff: 1.5, credits: 3, isSpecialCase: true, controlThreshold: 10 },
         { name: "Soins infirmiers en uro-néphrologie et hémodialyse", coeff: 1.5, credits: 3 },
-        { name: "Soins infirmiers en Orthopédie", coeff: 1, credits: 2, isSpecialCase: true }, // Special case: 1 DS + 2 exams
+        { name: "Soins infirmiers en Orthopédie", coeff: 1, credits: 2, isSpecialCase: true },
         { name: "Soins infirmiers en gynéco-obstétrique", coeff: 1.5, credits: 3 },
         { name: "Anglais médical (4)", coeff: 1, credits: 2, noControl: true },
         { name: "Méthodologie de la recherche (1)", coeff: 1, credits: 2, noControl: true }
@@ -65,7 +65,7 @@ const subjectsBySemester = {
         { name: "Soins infirmiers dans la communauté (2)", coeff: 2, credits: 4 },
         { name: "Carcinologie", coeff: 1, credits: 2 },
         { name: "Hématologie", coeff: 1, credits: 2 },
-        { name: "Dermatologie/ORL/Ophtalmo", coeff: 0.5, credits: 1, isAnatomie: true }, // Special case: 1 DS + 3 exams
+        { name: "Dermatologie/ORL/Ophtalmo", coeff: 0.5, credits: 1, isAnatomie: true },
         { name: "Stage hospitalier au bloc opératoire", coeff: 1, credits: 2, singleNote: true, controlThreshold: 10 },
         { name: "Stage hospitalier en soins critiques", coeff: 2, credits: 4, singleNote: true, controlThreshold: 10 },
         { name: "Méthodologie de la recherche (2)", coeff: 1, credits: 2, noControl: true },
@@ -82,7 +82,6 @@ const subjectsBySemester = {
     ]
 };
 
-// Function to create input fields
 function createSubjectInputs() {
     const semester = document.getElementById('semesterSelect').value;
     const subjects = subjectsBySemester[semester];
@@ -92,9 +91,10 @@ function createSubjectInputs() {
     subjects.forEach((subject, index) => {
         const card = document.createElement('div');
         card.className = 'subject-card';
+        let cardContent = '';
 
         if (subject.isAnatomie) {
-            card.innerHTML = `
+            cardContent = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
                 ${Array.from({length: 3}, (_, i) => `
                     <div class="input-group">
@@ -104,7 +104,7 @@ function createSubjectInputs() {
                 `).join('')}
             `;
         } else if (subject.isDermatologie) {
-            card.innerHTML = `
+            cardContent = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
                 <div class="input-group">
                     <input type="number" placeholder="DS" id="derm_ds${index}">
@@ -114,7 +114,7 @@ function createSubjectInputs() {
                 </div>
             `;
         } else if (subject.isSpecialCase) {
-            card.innerHTML = `
+            cardContent = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
                 <div class="input-group">
                     <input type="number" placeholder="DS" id="special_ds${index}">
@@ -123,14 +123,14 @@ function createSubjectInputs() {
                 </div>
             `;
         } else if (subject.singleNote) {
-            card.innerHTML = `
+            cardContent = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
                 <div class="input-group">
                     <input type="number" placeholder="Note" id="note_${index}">
                 </div>
             `;
         } else {
-            card.innerHTML = `
+            cardContent = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
                 <div class="input-group">
                     <input type="number" placeholder="DS Note" id="ds_${index}">
@@ -138,47 +138,32 @@ function createSubjectInputs() {
                 </div>
             `;
         }
+
+        cardContent += `<div class="subject-average" id="average_${index}"></div>`;
+        card.innerHTML = cardContent;
         container.appendChild(card);
     });
 }
 
-// Calculation function
 function calculateAverage() {
     const semester = document.getElementById('semesterSelect').value;
     const subjects = subjectsBySemester[semester];
     let total = 0, totalCoeff = 0, totalCredits = 0, earnedCredits = 0;
     const warnings = [];
-    const noControlSubjects = new Set([
-        "Anglais médicale (2)", "Philosophie des sciences", "2CN (2)", 
-        "Sociologie de la santé", "Technique de communication (2)", 
-        "Système de santé", "Economie de la santé", "Méthodologie de la recherche (1)", 
-        "Anglais médical (4)", "Anglais médical (1)", "Droit du patient", "2CN (1)",
-        "Anglais médicale (1)", "Psychologie du développement social", 
-        "Technique de communication (1)", "Santé et sécurité au travail", 
-        "Soins infirmiers et handicap", "Soins infirmiers et santé de l'adolescent", 
-        "Recherche documentaire", "Anglais médicale (3)", "Qualité et sécurité des soins", 
-        "Méthodologie de la recherche (2)", "Statistiques"
-    ]);
+    const noControlSubjects = new Set([...]);
 
     subjects.forEach((subject, index) => {
         let rawAverage = 0;
 
-        // Calculate average based on subject type
         if (subject.isAnatomie) {
             const averages = Array.from({length: 3}, (_, i) => {
                 const ds = parseFloat(document.getElementById(`anat_ds${index}_${i}`).value) || 0;
                 const exam = parseFloat(document.getElementById(`anat_exam${index}_${i}`).value);
-                // If exam is not provided (NaN), exclude it from the calculation
                 if (isNaN(exam)) return null;
                 return (ds * 0.3) + (exam * 0.7);
-            }).filter(val => val !== null); // Filter out null values (missing exams)
+            }).filter(val => val !== null);
 
-            // Calculate the average based on the number of valid exams
-            if (averages.length > 0) {
-                rawAverage = averages.reduce((a, b) => a + b, 0) / averages.length;
-            } else {
-                rawAverage = 0; // If no exams are provided, set average to 0
-            }
+            rawAverage = averages.length > 0 ? averages.reduce((a, b) => a + b, 0) / averages.length : 0;
         } 
         else if (subject.isDermatologie) {
             const ds = parseFloat(document.getElementById(`derm_ds${index}`).value) || 0;
@@ -202,12 +187,13 @@ function calculateAverage() {
             rawAverage = (ds * 0.3) + (exam * 0.7);
         }
 
-        // Credits calculation
+        // Update subject average display
+        document.getElementById(`average_${index}`).textContent = `Moyenne: ${rawAverage.toFixed(2)}/20`;
+
+        // Existing credit and control calculations
         totalCredits += subject.credits;
         if (rawAverage >= 10) earnedCredits += subject.credits;
-
-        // Control checks
-        const threshold = subject.controlThreshold || 6; // Default threshold is 6
+        const threshold = subject.controlThreshold || 6;
         if (!subject.noControl && !noControlSubjects.has(subject.name) && rawAverage < threshold) {
             warnings.push(`Contrôle requis dans ${subject.name} (Note: ${rawAverage.toFixed(2)})`);
         }
@@ -216,7 +202,6 @@ function calculateAverage() {
         totalCoeff += subject.coeff;
     });
 
-    // Display results
     const finalAverage = total / totalCoeff;
     let resultHTML = `Moyenne Semestrielle: ${finalAverage.toFixed(2)}/20`;
     if (warnings.length > 0) {
@@ -228,6 +213,5 @@ function calculateAverage() {
         `Crédits Totaux: ${totalCredits}<br>Crédits Validés: ${earnedCredits}`;
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', createSubjectInputs);
 document.getElementById('semesterSelect').addEventListener('change', createSubjectInputs);
