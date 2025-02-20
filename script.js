@@ -82,7 +82,74 @@ const subjectsBySemester = {
     ]
 };
 
-// Function to create input fields
+const subjectsBySemester = {
+    // Your existing subjects data here (keep this part unchanged)
+};
+
+// Function to calculate and display the average for a single subject
+function updateSubjectAverage(subject, index) {
+    let rawAverage = 0;
+
+    if (subject.isAnatomie) {
+        const averages = Array.from({ length: 3 }, (_, i) => {
+            const ds = parseFloat(document.getElementById(`anat_ds${index}_${i}`).value) || 0;
+            const exam = parseFloat(document.getElementById(`anat_exam${index}_${i}`).value);
+            if (isNaN(exam)) return null;
+            return (ds * 0.3) + (exam * 0.7);
+        }).filter(val => val !== null);
+
+        rawAverage = averages.length > 0 ? averages.reduce((a, b) => a + b, 0) / averages.length : 0;
+    } else if (subject.isDermatologie) {
+        const ds = parseFloat(document.getElementById(`derm_ds${index}`).value) || 0;
+        const exam1 = parseFloat(document.getElementById(`derm_exam1${index}`).value) || 0;
+        const exam2 = parseFloat(document.getElementById(`derm_exam2${index}`).value) || 0;
+        const exam3 = parseFloat(document.getElementById(`derm_exam3${index}`).value) || 0;
+        rawAverage = (ds * 0.3) + ((exam1 + exam2 + exam3) / 3 * 0.7);
+    } else if (subject.isSpecialCase) {
+        const ds = parseFloat(document.getElementById(`special_ds${index}`).value) || 0;
+        const exam1 = parseFloat(document.getElementById(`special_exam1${index}`).value) || 0;
+        const exam2 = parseFloat(document.getElementById(`special_exam2${index}`).value) || 0;
+        rawAverage = (ds * 0.3) + ((exam1 + exam2) / 2 * 0.7);
+    } else if (subject.singleNote) {
+        rawAverage = parseFloat(document.getElementById(`note_${index}`).value) || 0;
+    } else {
+        const ds = parseFloat(document.getElementById(`ds_${index}`).value) || 0;
+        const exam = parseFloat(document.getElementById(`exam_${index}`).value) || 0;
+        rawAverage = (ds * 0.3) + (exam * 0.7);
+    }
+
+    // Update the average display
+    const averageElement = document.getElementById(`average_${index}`);
+    if (averageElement) {
+        averageElement.textContent = `Moyenne: ${rawAverage.toFixed(2)}/20`;
+    }
+}
+
+// Function to add event listeners to input fields
+function addInputEventListeners(subject, index) {
+    if (subject.isAnatomie) {
+        Array.from({ length: 3 }, (_, i) => {
+            document.getElementById(`anat_ds${index}_${i}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+            document.getElementById(`anat_exam${index}_${i}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        });
+    } else if (subject.isDermatologie) {
+        document.getElementById(`derm_ds${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`derm_exam1${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`derm_exam2${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`derm_exam3${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+    } else if (subject.isSpecialCase) {
+        document.getElementById(`special_ds${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`special_exam1${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`special_exam2${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+    } else if (subject.singleNote) {
+        document.getElementById(`note_${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+    } else {
+        document.getElementById(`ds_${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+        document.getElementById(`exam_${index}`).addEventListener('input', () => updateSubjectAverage(subject, index));
+    }
+}
+
+// Modify the createSubjectInputs function to add event listeners
 function createSubjectInputs() {
     const semester = document.getElementById('semesterSelect').value;
     const subjects = subjectsBySemester[semester];
@@ -96,10 +163,10 @@ function createSubjectInputs() {
         if (subject.isAnatomie) {
             card.innerHTML = `
                 <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
-                ${Array.from({length: 3}, (_, i) => `
+                ${Array.from({ length: 3 }, (_, i) => `
                     <div class="input-group">
-                        <input type="number" placeholder="DS ${i+1}" id="anat_ds${index}_${i}">
-                        <input type="number" placeholder="Exam ${i+1}" id="anat_exam${index}_${i}">
+                        <input type="number" placeholder="DS ${i + 1}" id="anat_ds${index}_${i}">
+                        <input type="number" placeholder="Exam ${i + 1}" id="anat_exam${index}_${i}">
                     </div>
                 `).join('')}
                 <div class="subject-average" id="average_${index}"></div>
@@ -143,95 +210,10 @@ function createSubjectInputs() {
                 <div class="subject-average" id="average_${index}"></div>
             `;
         }
+
         container.appendChild(card);
+        addInputEventListeners(subject, index); // Add event listeners for this subject
     });
-}
-// Calculation function
-function calculateAverage() {
-    const semester = document.getElementById('semesterSelect').value;
-    const subjects = subjectsBySemester[semester];
-    let total = 0, totalCoeff = 0, totalCredits = 0, earnedCredits = 0;
-    const warnings = [];
-    const noControlSubjects = new Set([
-        "Anglais médicale (2)", "Philosophie des sciences", "2CN (2)", 
-        "Sociologie de la santé", "Technique de communication (2)", 
-        "Système de santé", "Economie de la santé", "Méthodologie de la recherche (1)", 
-        "Anglais médical (4)", "Anglais médical (1)", "Droit du patient", "2CN (1)",
-        "Anglais médicale (1)", "Psychologie du développement social", 
-        "Technique de communication (1)", "Santé et sécurité au travail", 
-        "Soins infirmiers et handicap", "Soins infirmiers et santé de l'adolescent", 
-        "Recherche documentaire", "Anglais médicale (3)", "Qualité et sécurité des soins", 
-        "Méthodologie de la recherche (2)", "Statistiques"
-    ]);
-
-    subjects.forEach((subject, index) => {
-        let rawAverage = 0;
-
-        // Calculate average based on subject type
-        if (subject.isAnatomie) {
-            const averages = Array.from({length: 3}, (_, i) => {
-                const ds = parseFloat(document.getElementById(`anat_ds${index}_${i}`).value) || 0;
-                const exam = parseFloat(document.getElementById(`anat_exam${index}_${i}`).value);
-                // If exam is not provided (NaN), exclude it from the calculation
-                if (isNaN(exam)) return null;
-                return (ds * 0.3) + (exam * 0.7);
-            }).filter(val => val !== null); // Filter out null values (missing exams)
-
-            // Calculate the average based on the number of valid exams
-            if (averages.length > 0) {
-                rawAverage = averages.reduce((a, b) => a + b, 0) / averages.length;
-            } else {
-                rawAverage = 0; // If no exams are provided, set average to 0
-            }
-        } 
-        else if (subject.isDermatologie) {
-            const ds = parseFloat(document.getElementById(`derm_ds${index}`).value) || 0;
-            const exam1 = parseFloat(document.getElementById(`derm_exam1${index}`).value) || 0;
-            const exam2 = parseFloat(document.getElementById(`derm_exam2${index}`).value) || 0;
-            const exam3 = parseFloat(document.getElementById(`derm_exam3${index}`).value) || 0;
-            rawAverage = (ds * 0.3) + ((exam1 + exam2 + exam3) / 3 * 0.7);
-        } 
-        else if (subject.isSpecialCase) {
-            const ds = parseFloat(document.getElementById(`special_ds${index}`).value) || 0;
-            const exam1 = parseFloat(document.getElementById(`special_exam1${index}`).value) || 0;
-            const exam2 = parseFloat(document.getElementById(`special_exam2${index}`).value) || 0;
-            rawAverage = (ds * 0.3) + ((exam1 + exam2) / 2 * 0.7);
-        } 
-        else if (subject.singleNote) {
-            rawAverage = parseFloat(document.getElementById(`note_${index}`).value) || 0;
-        } 
-        else {
-            const ds = parseFloat(document.getElementById(`ds_${index}`).value) || 0;
-            const exam = parseFloat(document.getElementById(`exam_${index}`).value) || 0;
-            rawAverage = (ds * 0.3) + (exam * 0.7);
-// Update subject average display
-document.getElementById(`average_${index}`).textContent = `Moyenne: ${rawAverage.toFixed(2)}/20`;
-        }
-
-        // Credits calculation
-        totalCredits += subject.credits;
-        if (rawAverage >= 10) earnedCredits += subject.credits;
-
-        // Control checks
-        const threshold = subject.controlThreshold || 6; // Default threshold is 6
-        if (!subject.noControl && !noControlSubjects.has(subject.name) && rawAverage < threshold) {
-            warnings.push(`Contrôle requis dans ${subject.name} (Note: ${rawAverage.toFixed(2)})`);
-        }
-
-        total += rawAverage * subject.coeff;
-        totalCoeff += subject.coeff;
-    });
-
-    // Display results
-    const finalAverage = total / totalCoeff;
-    let resultHTML = `Moyenne Semestrielle: ${finalAverage.toFixed(2)}/20`;
-    if (warnings.length > 0) {
-        resultHTML += `<br><br><span class="warning">ATTENTION:</span><br>${warnings.join('<br>')}`;
-    }
-
-    document.getElementById('result').innerHTML = resultHTML;
-    document.getElementById('creditsResult').innerHTML = 
-        `Crédits Totaux: ${totalCredits}<br>Crédits Validés: ${earnedCredits}`;
 }
 
 // Initialize
