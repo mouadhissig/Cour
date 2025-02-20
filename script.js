@@ -146,7 +146,7 @@ function addInputEventListeners(subject, index) {
     }
 }
 
-// Modify the createSubjectInputs function to add event listeners
+// Function to create input fields
 function createSubjectInputs() {
     const semester = document.getElementById('semesterSelect').value;
     const subjects = subjectsBySemester[semester];
@@ -212,6 +212,61 @@ function createSubjectInputs() {
         addInputEventListeners(subject, index); // Add event listeners for this subject
     });
 }
+
+// Calculation function
+function calculateAverage() {
+    const semester = document.getElementById('semesterSelect').value;
+    const subjects = subjectsBySemester[semester];
+    let total = 0, totalCoeff = 0, totalCredits = 0, earnedCredits = 0;
+    const warnings = [];
+    const noControlSubjects = new Set([
+        "Anglais médicale (2)", "Philosophie des sciences", "2CN (2)", 
+        "Sociologie de la santé", "Technique de communication (2)", 
+        "Système de santé", "Economie de la santé", "Méthodologie de la recherche (1)", 
+        "Anglais médical (4)", "Anglais médical (1)", "Droit du patient", "2CN (1)",
+        "Anglais médicale (1)", "Psychologie du développement social", 
+        "Technique de communication (1)", "Santé et sécurité au travail", 
+        "Soins infirmiers et handicap", "Soins infirmiers et santé de l'adolescent", 
+        "Recherche documentaire", "Anglais médicale (3)", "Qualité et sécurité des soins", 
+        "Méthodologie de la recherche (2)", "Statistiques"
+    ]);
+
+    subjects.forEach((subject, index) => {
+        let rawAverage = 0;
+
+        // Calculate average based on subject type
+        if (subject.isAnatomie) {
+            const averages = Array.from({ length: 3 }, (_, i) => {
+                const ds = parseFloat(document.getElementById(`anat_ds${index}_${i}`).value) || 0;
+                const exam = parseFloat(document.getElementById(`anat_exam${index}_${i}`).value);
+                if (isNaN(exam)) return null;
+                return (ds * 0.3) + (exam * 0.7);
+            }).filter(val => val !== null);
+
+            rawAverage = averages.length > 0 ? averages.reduce((a, b) => a + b, 0) / averages.length : 0;
+        } else if (subject.isDermatologie) {
+            const ds = parseFloat(document.getElementById(`derm_ds${index}`).value) || 0;
+            const exam1 = parseFloat(document.getElementById(`derm_exam1${index}`).value) || 0;
+            const exam2 = parseFloat(document.getElementById(`derm_exam2${index}`).value) || 0;
+            const exam3 = parseFloat(document.getElementById(`derm_exam3${index}`).value) || 0;
+            rawAverage = (ds * 0.3) + ((exam1 + exam2 + exam3) / 3 * 0.7);
+        } else if (subject.isSpecialCase) {
+            const ds = parseFloat(document.getElementById(`special_ds${index}`).value) || 0;
+            const exam1 = parseFloat(document.getElementById(`special_exam1${index}`).value) || 0;
+            const exam2 = parseFloat(document.getElementById(`special_exam2${index}`).value) || 0;
+            rawAverage = (ds * 0.3) + ((exam1 + exam2) / 2 * 0.7);
+        } else if (subject.singleNote) {
+            rawAverage = parseFloat(document.getElementById(`note_${index}`).value) || 0;
+        } else {
+            const ds = parseFloat(document.getElementById(`ds_${index}`).value) || 0;
+            const exam = parseFloat(document.getElementById(`exam_${index}`).value) || 0;
+            rawAverage = (ds * 0.3) + (exam * 0.7);
+        }
+
+        // Credits calculation
+        totalCredits += subject.credits;
+        if (rawAverage >= 10) earnedCredits += subject.credits;
+
         // Control checks
         const threshold = subject.controlThreshold || 6; // Default threshold is 6
         if (!subject.noControl && !noControlSubjects.has(subject.name) && rawAverage < threshold) {
