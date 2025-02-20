@@ -102,6 +102,7 @@ function createSubjectInputs() {
                         <input type="number" placeholder="Exam ${i+1}" id="anat_exam${index}_${i}">
                     </div>
                 `).join('')}
+                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.isDermatologie) {
             card.innerHTML = `
@@ -112,6 +113,7 @@ function createSubjectInputs() {
                     <input type="number" placeholder="Exam ORL" id="derm_exam2${index}">
                     <input type="number" placeholder="Exam Ophtalmo" id="derm_exam3${index}">
                 </div>
+                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.isSpecialCase) {
             card.innerHTML = `
@@ -121,6 +123,7 @@ function createSubjectInputs() {
                     <input type="number" placeholder="Exam 1" id="special_exam1${index}">
                     <input type="number" placeholder="Exam 2" id="special_exam2${index}">
                 </div>
+                <div class="subject-average" id="average_${index}"></div>
             `;
         } else if (subject.singleNote) {
             card.innerHTML = `
@@ -128,6 +131,7 @@ function createSubjectInputs() {
                 <div class="input-group">
                     <input type="number" placeholder="Note" id="note_${index}">
                 </div>
+                <div class="subject-average" id="average_${index}"></div>
             `;
         } else {
             card.innerHTML = `
@@ -136,51 +140,12 @@ function createSubjectInputs() {
                     <input type="number" placeholder="DS Note" id="ds_${index}">
                     <input type="number" placeholder="Exam Note" id="exam_${index}">
                 </div>
+                <div class="subject-average" id="average_${index}"></div>
             `;
         }
         container.appendChild(card);
     });
 }
-// Function to create input fields
-function createSubjectInputs() {
-    const semester = document.getElementById('semesterSelect').value;
-    const subjects = subjectsBySemester[semester];
-    const container = document.getElementById('subjectsContainer');
-    container.innerHTML = '';
-
-    subjects.forEach((subject, index) => {
-        const card = document.createElement('div');
-        card.className = 'subject-card';
-
-        if (subject.isAnatomie) {
-            card.innerHTML = `
-                <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
-                ${Array.from({length: 3}, (_, i) => `
-                    <div class="input-group">
-                        <input type="number" placeholder="DS ${i+1}" id="anat_ds${index}_${i}">
-                        <input type="number" placeholder="Exam ${i+1}" id="anat_exam${index}_${i}">
-                    </div>
-                `).join('')}
-                <div class="subject-average" id="average_${index}" style="margin-top: 8px; font-weight: 600; color: #2c3e50; padding: 6px; background: #f0f4f8; border-radius: 4px; border: 1px solid #dbe4ed;"></div>
-            `;
-        } else if (subject.isDermatologie) {
-            card.innerHTML = `
-                <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
-                <div class="input-group">
-                    <input type="number" placeholder="DS" id="derm_ds${index}">
-                    <input type="number" placeholder="Exam Dermatologie" id="derm_exam1${index}">
-                    <input type="number" placeholder="Exam ORL" id="derm_exam2${index}">
-                    <input type="number" placeholder="Exam Ophtalmo" id="derm_exam3${index}">
-                </div>
-                <div class="subject-average" id="average_${index}" style="margin-top: 8px; font-weight: 600; color: #2c3e50; padding: 6px; background: #f0f4f8; border-radius: 4px; border: 1px solid #dbe4ed;"></div>
-            `;
-        } else if (subject.isSpecialCase) {
-            card.innerHTML = `
-                <h3>${subject.name} (Coeff: ${subject.coeff}, Cr: ${subject.credits})</h3>
-                <div class="input-group">
-                    <input type="number" placeholder="DS" id="special_ds${index}">
-                    <input type="number" placeholder="Exam 1" id="special_exam1${index}">
-                    <input type="number" placeholder="Exam 2" id="special_exam2${index}">
                 </div
 // Calculation function
 function calculateAverage() {
