@@ -82,9 +82,6 @@ const subjectsBySemester = {
     ]
 };
 
-const subjectsBySemester = {
-    // Your existing subjects data here (keep this part unchanged)
-};
 
 // Function to calculate and display the average for a single subject
 function updateSubjectAverage(subject, index) {
