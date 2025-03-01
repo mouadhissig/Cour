@@ -10,158 +10,117 @@ body {
   align-items: center;
 }
 
-/* Main Container */
-.container {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+/* Header */
+header {
+  background: #065f46;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #0a7555;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+  background: #0d8a66;
+}
+
+/* Main Content */
+main {
+  padding: 1rem;
   max-width: 800px;
   width: 100%;
-  text-align: center;
 }
 
-/* Logo */
-.logo {
-  width: 150px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-/* Titles */
-h1, h2 {
-  color: #065f46;
-  margin-bottom: 20px;
-}
-
-/* Dropdown Menu */
-.semester-select {
-  margin-bottom: 25px;
-}
-
-select {
-  padding: 12px 25px;
-  border-radius: 8px;
-  border: 2px solid #34d399;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-}
-
-/* Subject Cards */
-.subject-card {
-  background: rgba(52, 211, 153, 0.1);
-  border: 1px solid #34d399;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 15px 0;
-}
-
-/* Input Fields */
-.input-group {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-  justify-content: center;
-}
-
-input {
-  padding: 10px 12px;
-  border: 1px solid #34d399;
-  border-radius: 6px;
-  width: 100px;
-  text-align: center;
-  font-size: 16px;
-}
-
-/* Buttons */
-button {
-  background: #34d399;
-  color: white;
-  padding: 12px 30px;
-  border-radius: 8px;
-  margin-top: 20px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 16px;
-}
-
-button:hover {
-  background: #10b981;
-}
-
-/* Results Display */
-#result, #creditsResult {
-  margin-top: 25px;
-  padding: 15px;
-  background: rgba(52, 211, 153, 0.15);
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Warning Messages */
-.warning {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-/* About Section */
-.about {
+.calculator {
   background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  max-width: 800px;
-  margin-top: 40px;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-.about p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
+.calculator select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-/* Legal Section */
-.legal {
-  margin-top: 30px;
-  text-align: center;
+.calculator button {
+  background: #065f46;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.legal a {
-  color: #065f46;
-  text-decoration: none;
+.calculator button:hover {
+  background: #0a7555;
 }
 
-.legal a:hover {
-  text-decoration: underline;
+#result, #creditsResult {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Blog and FAQs */
+article, .faq-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 /* Footer */
 footer {
+  background: #065f46;
+  color: white;
   text-align: center;
-  margin-top: 30px;
-  padding: 10px 0;
-  font-size: 0.8em;
-  color: #666;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: 2rem;
 }
 
-footer:hover {
-  opacity: 1;
+footer a {
+  color: white;
+  text-decoration: none;
 }
 
-/* Mobile Responsive */
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .input-group {
-    flex-wrap: wrap;
+  nav ul {
+    flex-direction: column;
   }
 
-  .about {
-    text-align: center;
+  .calculator {
+    width: 90%;
   }
 }
