@@ -64,49 +64,76 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <img src="issig.png" alt="Logo ISSIG" class="logo">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="privacy.html">Politique de Confidentialité</a></li>
+        <li><a href="terms.html">Conditions d'Utilisation</a></li>
+      </ul>
+    </nav>
     <h1>📚 Calculateur de Moyennes Semestrielles</h1>
+  </header>
 
-    <!-- Semester Selection -->
-    <div class="semester-select">
-      <select id="semesterSelect">
-        <option value="1">Semestre 1</option>
-        <option value="2">Semestre 2</option>
-        <option value="3">Semestre 3</option>
-        <option value="4">Semestre 4</option>
-        <option value="5">Semestre 5</option>
-        <option value="6">Semestre 6</option>
-      </select>
-    </div>
+  <main>
+    <!-- Calculator Section -->
+    <section id="home">
+      <h2>Calculez vos moyennes</h2>
+      <div class="calculator">
+        <select id="semesterSelect">
+          <option value="1">Semestre 1</option>
+          <option value="2">Semestre 2</option>
+          <option value="3">Semestre 3</option>
+          <option value="4">Semestre 4</option>
+          <option value="5">Semestre 5</option>
+          <option value="6">Semestre 6</option>
+        </select>
+        <div id="subjectsContainer"></div>
+        <button onclick="calculateAverage()">Calculer la Moyenne</button>
+        <div id="result"></div>
+        <div id="creditsResult"></div>
+      </div>
+    </section>
 
-    <!-- Subjects Container -->
-    <div id="subjectsContainer"></div>
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <article>
+        <h3>Comment utiliser le Calculateur de Moyennes ISSIG</h3>
+        <p>Découvrez comment utiliser notre calculateur pour estimer vos moyennes semestrielles de manière simple et précise.</p>
+      </article>
+      <article>
+        <h3>Comprendre le système de notation de l’ISSIG</h3>
+        <p>Apprenez comment les notes sont calculées à l’ISSIG et comment elles affectent votre moyenne semestrielle.</p>
+      </article>
+    </section>
 
-    <!-- Calculate Button -->
-    <div style="text-align: center;">
-      <button onclick="calculateAverage()">Calculer la Moyenne</button>
-    </div>
+    <!-- FAQs Section -->
+    <section id="faq">
+      <h2>FAQs</h2>
+      <div class="faq-item">
+        <h3>Qu’est-ce que le Calculateur de Moyennes ISSIG ?</h3>
+        <p>C’est un outil conçu pour aider les étudiants de l’ISSIG à calculer leurs moyennes semestrielles rapidement et précisément.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Le calculateur est-il gratuit ?</h3>
+        <p>Oui, le Calculateur de Moyennes ISSIG est entièrement gratuit !</p>
+      </div>
+    </section>
 
-    <!-- Results Display -->
-    <div id="result"></div>
-    <div id="creditsResult"></div>
-  </div>
-
-  <!-- About Section -->
-  <section class="about">
-    <h2>À propos de l'ISSIG Gabès</h2>
-    <p>L'Institut Supérieur de Sciences Infirmières de Gabès (ISSIG) est une institution dédiée à la formation des infirmiers en Tunisie. Notre calculateur de moyennes semestrielles est conçu pour aider les étudiants à estimer leurs résultats académiques de manière simple et précise.</p>
-  </section>
-
-  <!-- Privacy Policy and Terms of Service -->
-  <section class="legal">
-    <h2>Informations Légales</h2>
-    <p><a href="privacy.html">Politique de Confidentialité</a> | <a href="terms.html">Conditions d'Utilisation</a></p>
-  </section>
+    <!-- About Section -->
+    <section id="about">
+      <h2>À propos de nous</h2>
+      <p>Nous sommes une équipe passionnée par l’éducation et dédiée à aider les étudiants de l’ISSIG à réussir leurs études.</p>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
+    <p><a href="privacy.html">Politique de Confidentialité</a> | <a href="terms.html">Conditions d'Utilisation</a></p>
     <p>Développé par MO20</p>
   </footer>
 
