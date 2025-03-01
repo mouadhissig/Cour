@@ -1,218 +1,115 @@
 /* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-/* Main Container */
-.container {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
 }
 
-/* Logo */
-.logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 20px;
+header h1 {
+  margin: 0;
 }
 
-/* Titles */
-h1, h2 {
-    color: #065f46;
-    margin-bottom: 20px;
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #444;
+  margin: 0;
 }
 
-/* Dropdown Menu */
-.semester-select {
-    margin-bottom: 25px;
+nav ul li {
+  margin: 0 1rem;
 }
 
-select {
-    padding: 12px 25px;
-    border-radius: 8px;
-    border: 2px solid #34d399;
-    font-size: 16px;
-    cursor: pointer;
-    background: white;
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
 }
 
-/* Subject Cards */
-.subject-card {
-    background: rgba(52, 211, 153, 0.1);
-    border: 1px solid #34d399;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 15px 0;
+nav ul li a:hover {
+  background: #555;
 }
 
-/* Input Fields */
-.input-group {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    justify-content: center;
+main {
+  padding: 1rem;
 }
 
-input {
-    padding: 10px 12px;
-    border: 1px solid #34d399;
-    border-radius: 6px;
-    width: 100px;
-    text-align: center;
-    font-size: 16px;
+.calculator {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-/* Replace the .subject-average styles in your style.css */
-.subject-average {
-    margin: 12px 0 8px;
-    color: #065f46; /* Your main green color */
-    font-family: 'Segoe UI', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    text-align: center;
-    display: block;
-    background: none !important; /* Force remove any background */
-    border: none !important; /* Remove borders */
-    box-shadow: none !important; /* Remove shadows */
-    padding: 0;
+.calculator label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
 }
 
-/* Buttons */
-button {
-    background: #34d399;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 8px;
-    margin-top: 20px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-size: 16px;
+.calculator input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-button:hover {
-    background: #10b981;
+.calculator button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* Results Display */
-#result, #creditsResult {
-    margin-top: 25px;
-    padding: 15px;
-    background: rgba(52, 211, 153, 0.15);
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
+.calculator button:hover {
+  background: #555;
 }
 
-/* Warning Messages */
-.warning {
-    color: #dc2626;
-    font-weight: bold;
+#result {
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
-/* Special Cases Styling */
-.special-input-group {
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-}
-
-.input-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-}
-
-.multi-exam-group {
-    display: flex;
-    gap: 10px;
-}
-
-/* About ISSIG Section */
-.about {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    max-width: 800px;
-    margin-top: 40px;
-}
-
-.about p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Social Media Section */
-.social-media {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.social-media a {
-    display: inline-block;
-    margin-top: 10px;
-    transition: transform 0.2s ease;
-}
-
-.social-media a:hover {
-    transform: scale(1.1);
-}
-
-/* Facebook Icon */
-.facebook-logo {
-    width: 40px;
-    height: auto;
-    transition: transform 0.2s ease, opacity 0.3s ease;
-}
-
-.facebook-logo:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-}
-
-/* Footer */
 footer {
-    text-align: center;
-    margin-top: 30px;
-    padding: 10px 0;
-    font-size: 0.8em;
-    color: #666;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
 
-footer:hover {
-    opacity: 1;
+footer a {
+  color: #fff;
+  text-decoration: none;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .special-input-group {
-        flex-direction: column;
-    }
+footer a:hover {
+  text-decoration: underline;
+}
 
-    .input-group {
-        flex-wrap: wrap;
-    }
+/* Responsive Design */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+  }
 
-    .about {
-        text-align: center;
-    }
+  .calculator {
+    width: 90%;
+  }
 }
